@@ -37,7 +37,7 @@ var drawChicken = function(i, j){
     ctx.fillStyle = "#FF0000";
     width = canvasWidth / 12;
     grid[i][j].xPos = j * width + width;
-    grid[i][j].yPos = i * width + y * width;
+    grid[i][j].yPos = i * width 
     ctx.fillRect((j * width) + width, i * width , width - 5, width - 5);
 }
 var deleteChicken = function(i, j){
