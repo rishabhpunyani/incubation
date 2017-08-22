@@ -83,7 +83,21 @@ var makeCraft = function(){
     ctx.fillStyle = "#FF0000";
     ctx.fillRect(craft.xPos, craft.yPos, craftLenght, craftLenght);
 }
-
+var craftCrash = function(){
+    for (var i = 3; i >= 0; i--) {
+        for (var j = 9; j >= 0; j--) {
+            if(grid[i][j].status == "alive"){
+                if(( craft.yPos < grid[i][j].yPos + chickenLenght)&&
+                    (craft.xPos - grid[i][j].yPos < chickenLenght || craftLenght >= grid[i][j] - craft.xPos))
+                {
+                    clearInterval(myVar);
+                    console.log("You Lost");
+                    break;
+                }
+            }
+        }
+    }
+}
 makeGrid();
 makeCraft();
 var manageGrid = function(){};
@@ -156,6 +170,7 @@ function checkKey(e) {
             deleteCraft();
             craft.yPos = craft.yPos - 10; 
             makeCraft();
+            craftCrash();
         }
     }
     else if (e.keyCode == '40') {
@@ -165,6 +180,7 @@ function checkKey(e) {
             deleteCraft();
             craft.yPos = craft.yPos + 10; 
             makeCraft();
+            craftCrash();
         }
     }
     else if (e.keyCode == '37') {
@@ -174,6 +190,7 @@ function checkKey(e) {
             deleteCraft();
             craft.xPos = craft.xPos - 10; 
             makeCraft();
+            craftCrash();
         }
     
     }
@@ -184,6 +201,7 @@ function checkKey(e) {
             deleteCraft();
             craft.xPos = craft.xPos + 10; 
             makeCraft();
+            craftCrash();
         }
     }
 
