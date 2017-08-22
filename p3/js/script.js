@@ -1,4 +1,3 @@
-
 var canvas = document.getElementById('myCanvas');
 var ctx = canvas.getContext("2d");
 document.onkeydown = checkKey;
@@ -9,6 +8,7 @@ var craftLenght = canvasWidth / 6;
 var time = 21 ;
 var y = 0;
 var grid = [];
+var moveBullet;
 var craft = {
     xPos: canvasWidth / 2 - craftLenght/2,
     yPos: canvasHeight - canvasHeight / 6 - craftLenght / 2,
@@ -24,23 +24,21 @@ var startGame = function(){};
 
 var overGame = function(){};
 
-var timmer = function(){
-    var myVar = setInterval(function(){
-        if( y > 6){
-            clearInterval(myVar);
-        }
-        updateGrid( );
-        y++;
-        
-    },4000)
-};
+var myVar = setInterval(function(){
+    if( y > 6){
+        clearInterval(myVar);
+        console.log("You Lost")
+    }
+    y++;
+},4000);
+
 
 var drawChicken = function(i, j){
     ctx.fillStyle = "#FF0000";
     width = canvasWidth / 12;
     grid[i][j].xPos = j * width + width;
-    grid[i][j].yPos = i * width + y * width
-    ctx.fillRect((j * width) + width, i * width + y * width, width - 5, width - 5);
+    grid[i][j].yPos = i * width + y * width;
+    ctx.fillRect((j * width) + width, i * width , width - 5, width - 5);
 }
 var deleteChicken = function(i, j){
     ctx.fillStyle = "#FF0000";
@@ -67,8 +65,8 @@ var updateGrid = function( ){
         }
     }
     var k = 0; 
-    for (var i = 0; i < 4; i++) {
-        for (var j = 0; j < 10; j++) {
+    for (var i = 3; i >= 0; i--) {
+        for (var j = 9; j >= 0; j--) {
             if(grid[i][j].status == "alive"){
                 k++;
                 drawChicken(i, j);
@@ -88,7 +86,6 @@ var makeCraft = function(){
 
 makeGrid();
 makeCraft();
-timmer();
 var manageGrid = function(){};
 
 var destroyChicken = function(){
@@ -97,7 +94,8 @@ var destroyChicken = function(){
         for(j = 9;j >= 0; j--){
             var c = grid[i][j];
             if(c.status == "alive"){
-                if((c.xPos < bullet.xPos + 10 && bullet.xPos < c.xPos + chickenLenght) && ( bullet.yPos < c.yPos + chickenLenght - 20)){
+                if((c.xPos < bullet.xPos + 10 && bullet.xPos < c.xPos + chickenLenght) 
+                    && ( bullet.yPos < c.yPos + chickenLenght - 10)&& bullet.yPos > c.yPos - 10){
                     grid[i][j].status = "dead";
                     console.log(i,j);
                     deleteBullet();
@@ -109,9 +107,8 @@ var destroyChicken = function(){
             }
         }
     }
-    if(k > 0){
-        updateGrid();
-    }
+
+    updateGrid();
 };
 
 var deleteCraft = function(){
@@ -138,7 +135,7 @@ function checkKey(e) {
 
     e = e || window.event;
 
-    if (e.keyCode == '38' && bullet.status == "active") {
+    if (e.keyCode == '32' && bullet.status == "active") {
         // up arrow
 
         bullet.xPos = craft.xPos + craft.dim / 2 - bullet.dim / 2;
@@ -147,14 +144,28 @@ function checkKey(e) {
         makeBullet(bullet);
         moveBullet = setInterval(function(){
             deleteBullet();
-            bullet.yPos = bullet.yPos - 30;
+            bullet.yPos = bullet.yPos - 20;
             makeBullet();
             stopBullet();
             destroyChicken();
         }, 25);
     }
+    else if (e.keyCode == '38'){
+        if (craft.yPos > 10){
+            console.log(craft.xPos, craft.yPos - 10);
+            deleteCraft();
+            craft.yPos = craft.yPos - 10; 
+            makeCraft();
+        }
+    }
     else if (e.keyCode == '40') {
         // down arrow
+        if (craft.yPos < canvasHeight - 10 - craft.dim ){
+            console.log(craft.xPos, craft.yPos + 10);
+            deleteCraft();
+            craft.yPos = craft.yPos + 10; 
+            makeCraft();
+        }
     }
     else if (e.keyCode == '37') {
        // left arrow
