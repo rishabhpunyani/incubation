@@ -106,7 +106,7 @@ var wonGame = function(){
     ctx.textAlign = "center";
     ctx.fillText("You Won score: " + score, canvas.width/2, canvas.height/2-200);
     ctx.font = "30px Aerial";
-    ctx.fillText("Press Enter to play level" + (level + 1) , canvas.width/2, canvas.height/2-100);
+    ctx.fillText("Press Enter to play level " + (level + 1) , canvas.width/2, canvas.height/2-100);
     ctx.font = "20px Aerial";
     ctx.fillText("Game Controls: Use Arrow keys to control movement and Space to fire", 
     canvas.width/2, canvas.height/2+200);
