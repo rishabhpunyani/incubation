@@ -196,6 +196,7 @@ var moveGrid = function( ){
         }
     }
     craftCrash();
+    ctx.clearRect(0, 0, canvasWidth , 20);
 
 }
 
