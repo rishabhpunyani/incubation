@@ -1,10 +1,13 @@
 var canvas = document.getElementById('myCanvas');
 var ctx = canvas.getContext("2d");
 document.onkeydown = checkKey;
+//Game Dimensions with craft length and chicken length
 var canvasWidth = 600;
 var canvasHeight = 600;
 var chickenLength = canvasWidth / 12;
 var craftLength = canvasWidth / 6; 
+//Intial game setting time, y count no of times grid moved at y-axis
+//Inital level is set to 1, moveBullet tracks bullet  and score  
 var time = 0 ;
 var y = 0;
 var level = 1;
@@ -41,10 +44,10 @@ var activeGame = function(){
     makeGrid(); 
     makeCraft();        
     scoreboard();
-    time = (level + 3) * 4 + 2;
+    time = (level + 2) * 4 + 2;
     clearInterval(LevelTimer);
     LevelTimer = setInterval(function(){                                    //Different level-timer for different levels
-        if( y > level + 2){
+        if( y > level + 1){
             overGame();
             clearInterval(LevelTimer);
             }
@@ -188,7 +191,6 @@ var destroyChicken = function(){                                    //Function f
                 if((c.xPos < bullet.xPos + 10 && bullet.xPos < c.xPos + chickenLength) 
                     && ( bullet.yPos < c.yPos + chickenLength - 10)&& bullet.yPos > c.yPos - 10){
                     grid[i][j].status = "dead";
-                    console.log(i,j);
                     deleteBullet();
                     deleteChicken(i,j);
                     clearInterval(moveBullet);
@@ -282,7 +284,7 @@ var finshedGame = function(){
     level = 1;
     score = 0;
     maintrack.pause();
-    gameover.play();
+    introtheme.play();
 };
 
 var overGame = function(){
@@ -301,7 +303,7 @@ var overGame = function(){
     ctx.fillText("Game Controls: Use Arrow keys to control movement and Space to fire", 
     canvas.width/2, canvas.height/2+200);
     y = 0;
-    score = 0;
+    score = score - level * 50;
     maintrack.pause();
     gameover.play();
 };
