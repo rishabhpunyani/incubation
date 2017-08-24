@@ -83,7 +83,6 @@ var updateGrid = function( ){                                    //updating grid
         for (var j = 9; j >= 0; j--) {
             if(grid[i][j].status == "alive"){
                 k++;
-                drawChicken(i, j);
             }
         }
     }
@@ -240,7 +239,7 @@ var scoreboard = function(){
     ctx.fillText("Score:"+ score, canvas.width-80, canvas.height-5);
 };
 
-/*CREATE FUNCTION FOR TIME*/
+/* This works when user wins game */
 
 var wonGame = function(){
     clearInterval(LevelTimer);
@@ -259,14 +258,32 @@ var wonGame = function(){
     GameStatus = "inactive";
     maintrack.pause();
     introtheme.play();
-    if( level > 7){
-        level = 1;
-        overGame();
+    if( level > 6){
+        finshedGame();
     }
     else{
         level = level + 1;
     }
 }
+
+var finshedGame = function(){
+    deleteGrid();
+    clearInterval(LevelTimer);
+    ctx.clearRect(0, 0, 600, 600);
+    clearInterval(timeLeft);
+    GameStatus = "inactive"; 
+    ctx.font = "40px Aerial";
+    ctx.fillStyle = "white";
+    ctx.textAlign = "center";
+    ctx.fillText("Game finshed! score: " + score, canvas.width/2, canvas.height/2-200);
+    ctx.font = "30px Aerial";
+    ctx.fillText("Press Enter to play Again!", canvas.width/2, canvas.height/2-100);
+    y = 0;
+    level = 1;
+    score = 0;
+    maintrack.pause();
+    gameover.play();
+};
 
 var overGame = function(){
     deleteGrid();
