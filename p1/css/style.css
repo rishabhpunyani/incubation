@@ -1,0 +1,292 @@
+body{
+	font-family: Montserrat;
+	margin: 0px;
+	scroll-behavior: smooth;
+	transition: all 1s ease-out;
+}
+* {
+    box-sizing: border-box;
+}
+
+.row:before, 
+.row:after {
+    content:"";
+    display: table ;
+    clear:both;
+    width: 100%;
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+@media only screen and (min-width: 768px) {
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 32%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}
+@media only (max-width: 768px) {
+    .col-1 ,
+    .col-2 ,
+    .col-3 ,
+    .col-4 ,
+    .col-5 ,
+    .col-6 ,
+    .col-7 ,
+    .col-8 ,
+    .col-9 ,
+    .col-10,
+    .col-11,
+    .col-12 {width: 100%;}
+}
+.container{
+	width: 96%;
+}
+.img-responsive{
+	width: 100%;
+	height: auto;
+}
+.img-responsive:hover{
+	height: auto;
+	opacity: 0.5;
+    filter: alpha(opacity=50);
+    transition:width 0.5s ease-in;
+}
+.text-center {
+	text-align: center;
+}
+.text-right {
+	text-align: right;
+}
+.text-left {
+	text-align: left;
+}
+.text-muted{
+	color: #b2c6cd;
+}
+.link-button{
+	padding: 10px 30px;
+	text-decoration: none;
+	border: 2px solid #FDCD3B;
+	border-radius: 20px;
+	color: black;
+	font-weight: bold;
+	transition: background-color 0.5s ease-out;
+}
+.link-button:hover{
+	background: #2A3A3F;
+	color: #FDCD3B;
+	padding: 10px 35px;
+	border-radius: 25px; 
+	border: 2px solid #2A3A3F;
+}
+
+/*Header section of the area*/
+header{
+	width: 100%;
+	background-image: url('../images/hero.jpg');
+	background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+header nav{
+	padding: 0px 30px;
+	background: #d9534f!important;
+	width: 100%;
+	position: fixed;
+}
+header nav div{
+	padding: 5px !important;
+}
+header nav h3.nav-logo{
+	font-weight: 1600;
+	font-size: 28px;
+	margin: 0px;
+	color: white;
+	text-transform: uppercase;
+	padding: 5px;
+
+}
+header nav h3 span{
+	color: #FDCD3B;
+
+}
+header nav li{
+	display: inline-block;
+}
+header nav li a{
+	text-decoration: none;
+	color: white;
+	padding: 5px 10px;
+	font-size: 15px;
+	text-transform: uppercase;
+	transition: background-image 0.5s ease-in;
+}
+header nav li a:hover{
+	border: 1px solid white;
+	border-radius: 3px;
+	background-image: linear-gradient(90deg, rgba(49,61,65,0.6), rgba(49,61,65,0.6)); 
+}
+header nav li a:active{
+	border: 2px solid white;
+	border-radius: 3px; 
+}
+#home{
+	min-height: 100vh;
+	display: flex;
+	display: -webkit-box;
+	display: -webkit-flex;
+	justify-content: center;
+	align-items: center;
+	background-image: linear-gradient(90deg, rgba(49,61,65,0.6), rgba(49,61,65,0.6));
+}
+
+#home h1{
+	color: white;
+	font-weight: 1100;
+	font-size: 36px;
+}
+#home h1 span{
+	color: white;
+	font-weight: 300;
+	font-size: 22px;
+	text-align: center;
+}
+header nav div.nav-right{
+	display: none;
+}
+@media only screen and (min-width: 768px) {
+	header nav div.nav-right{
+		display: block;
+	}	
+}
+article{
+	padding: 5% 10%;
+}
+/* This is skill area css */
+#skills{
+	transition: all 1s ease-out;
+}
+#skills section h3{
+	font-weight: 1100;
+	font-size: 36px;
+	color: #2A3A3F;
+}
+#skills section p{
+	color:#524e4d;
+	font-size: 20px;
+}
+
+#skills section div i{
+	color: #FDCD3B;
+}
+#skills section div h2{
+	font-size: 28px;
+}
+
+#skills section div p{
+	color:#93a4aa;
+	font-size: 17px;
+	font-weight: 100;
+}
+
+/*This is for work section*/
+
+#work{
+	background: #eee;
+}
+
+#work section h2{
+	font-weight: 1100;
+	font-size: 36px;
+	color: #2A3A3F;
+}
+
+#work section p.sub{
+	color:#524e4d;
+	font-size: 22px;
+}
+
+#work section img{
+	width: 100%;
+	height: auto;
+	padding: 20px 50px;
+}
+
+#work section div h3{
+	font-size: 28px;
+}
+#work section div p.work-detail{
+	color:#93a4aa;
+	font-size: 17px;
+	font-weight: 100;
+}
+
+
+/*This is for Projects section */
+
+#projects h2{
+	font-weight: 1100;
+	font-size: 36px;
+	color: #2A3A3F;
+}
+#projects section p.sub-heading{
+	color:#524e4d;
+	font-size: 22px;
+}
+
+#projects section img.card-head{
+	min-height: 200px;
+	border-radius: 10px;
+
+}
+
+/*This is for contacts section */
+#contacts{
+	background: #FDCD3B;
+}
+#contacts h2{
+	font-weight: 1100;
+	font-size: 36px;
+	color: #2A3A3F;
+}
+#contacts section p.sub-heading{
+	color:#524e4d;
+	font-size: 22px;
+}
+#contacts section input{
+	width: 100%;
+	padding: 15px;
+	border-radius: 5px;
+	border: 2px solid white;
+	background: transparent;
+}
+
+#contacts section textarea{
+	width: 95%;
+	height: 200px;
+	border-radius: 5px;
+	padding: 15px;
+	border: 2px solid white;
+	background: transparent;
+}
+
+footer{
+	background: #2A3A3F;
+	color: #b2c6cd;
+}
+
+
+
+
+
